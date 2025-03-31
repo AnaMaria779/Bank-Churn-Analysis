@@ -71,97 +71,6 @@ The dataset contains information about **bank customers**, including:
 ✅ **Better Credit Risk Management**: Segmenting customers based on financial health.  
 ✅ **Enhanced Customer Retention Strategies**: Detecting dormant accounts and high-value customers.  
 ✅ **Optimized Marketing Campaigns**: Identifying high-value customers for targeted promotions.  
-
----
-
-## 🛠️ SQL Queries Used  
-
-### 🏦 1. KPI Metrics  
-
-```sql
--- Total Customers
-SELECT COUNT(clientnum) AS Total_Customers FROM bank_churn_data;
-
--- Average Utilization Ratio
-SELECT ROUND(AVG(utilization_ratio), 2) AS Avg_Utilization FROM bank_churn_data;
-
--- Average Credit Limit
-SELECT ROUND(AVG(credit_limit), 2) AS Avg_Credit_Limit FROM bank_churn_data;
-
--- Average Age
-SELECT AVG(customer_age) AS Avg_Age FROM bank_churn_data;
--- Customer Distribution by Card Category
-SELECT card_category, COUNT(clientnum) AS Customer_Count 
-FROM bank_churn_data 
-GROUP BY card_category 
-ORDER BY Customer_Count DESC;
-
--- Customers Segmentation by Age Group
-SELECT 
-    CASE 
-        WHEN customer_age BETWEEN 18 AND 25 THEN '18-25'
-        WHEN customer_age BETWEEN 26 AND 35 THEN '26-35'
-        WHEN customer_age BETWEEN 36 AND 45 THEN '36-45'
-        WHEN customer_age BETWEEN 46 AND 55 THEN '46-55'
-        ELSE '56+' 
-    END AS Age_Group,
-    COUNT(clientnum) AS Total_Customers
-FROM bank_churn_data
-GROUP BY CASE 
-        WHEN customer_age BETWEEN 18 AND 25 THEN '18-25'
-        WHEN customer_age BETWEEN 26 AND 35 THEN '26-35'
-        WHEN customer_age BETWEEN 36 AND 45 THEN '36-45'
-        WHEN customer_age BETWEEN 46 AND 55 THEN '46-55'
-        ELSE '56+' 
-    END
-ORDER BY Total_Customers DESC;
--- Highest Credit Utilization Customers (Top 10)
-SELECT TOP 10 
-    clientnum, 
-    customer_age, 
-    income, 
-    credit_limit, 
-    utilization_ratio
-FROM bank_churn_data
-ORDER BY utilization_ratio DESC;
-
--- Customers with High Credit Limit but Low Balance (Top 10)
-SELECT TOP 10
-    clientnum, 
-    customer_age, 
-    income, 
-    credit_limit, 
-    balance, 
-    ROUND((balance * 100.0 / credit_limit), 2) AS Balance_Percentage
-FROM bank_churn_data
-WHERE balance < (0.2 * credit_limit)
-ORDER BY Balance_Percentage ASC;
--- Customers with the Longest Relationship (Top 10 by Tenure)
-SELECT TOP 10 
-    clientnum, 
-    customer_age, 
-    months_on_book, 
-    income, 
-    balance
-FROM bank_churn_data
-ORDER BY months_on_book DESC;
-
--- Credit Utilization Index (High-Risk Customers)
-SELECT 
-    clientnum, 
-    customer_age, 
-    income, 
-    credit_limit, 
-    utilization_ratio,
-    ROUND((utilization_ratio * 100.0), 2) AS Utilization_Percentage,
-    CASE 
-        WHEN utilization_ratio > 0.8 THEN 'High Risk'
-        WHEN utilization_ratio BETWEEN 0.5 AND 0.8 THEN 'Moderate Risk'
-        ELSE 'Low Risk' 
-    END AS Risk_Level
-FROM bank_churn_data
-ORDER BY utilization_ratio DESC;
-
 ---
  
 ##📌 Usage  
@@ -169,7 +78,6 @@ ORDER BY utilization_ratio DESC;
 2. **Use the interactive slicers** to filter by platform, artist, or track name.  
 3. **Explore key insights** in the pre-built dashboards.  
 4. **Analyze listening trends and engagement patterns.**  
-
 ---
 
 ##📚 Contributions  
