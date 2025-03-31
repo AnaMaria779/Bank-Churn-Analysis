@@ -161,6 +161,8 @@ SELECT
     END AS Risk_Level
 FROM bank_churn_data
 ORDER BY utilization_ratio DESC;
+
+---
  
 ##📌 Usage  
 1. **Load the Spotify dataset into Power BI.**  
