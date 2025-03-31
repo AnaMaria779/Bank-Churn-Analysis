@@ -161,8 +161,8 @@ SELECT
     END AS Risk_Level
 FROM bank_churn_data
 ORDER BY utilization_ratio DESC;
-
-## 📌 Usage  
+ 
+##📌 Usage  
 1. **Load the Spotify dataset into Power BI.**  
 2. **Use the interactive slicers** to filter by platform, artist, or track name.  
 3. **Explore key insights** in the pre-built dashboards.  
@@ -170,10 +170,10 @@ ORDER BY utilization_ratio DESC;
 
 ---
 
-## 📚 Contributions  
+##📚 Contributions  
 Contributions are welcome! Feel free to submit issues or pull requests.  
 
 ---
 
-## 📜 License  
+##📜 License  
 This project is licensed under the **MIT License**.  
